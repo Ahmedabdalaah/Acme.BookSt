@@ -1,0 +1,27 @@
+﻿@page
+@using Acme.BookSt.Localization
+@using Acme.BookSt.Permissions
+@using Acme.BookSt.Web.Pages.Authors
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.Extensions.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@inject IStringLocalizer<BookStResource> L
+@inject IAuthorizationService AuthorizationService
+@model IndexModel
+@inject IPageLayout PageLayout
+@{
+    PageLayout.Content.MenuItemName = "BooksSt";
+    PageLayout.Content.Title = L["Books"].Value;
+}
+@section scripts {
+    <abp-script src="/Pages/Authors/Index.js" />
+}
+@section content_toolbar {
+    <abp-button id="NewAuthorButton" text="@L["NewAuthor"].Value" icon="plus" size="Small" button-type="Primary" />
+}
+
+<abp-card>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="AuthorsTable"></abp-table>
+    </abp-card-body>
+</abp-card>
